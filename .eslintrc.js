@@ -1,12 +1,11 @@
-module.exports = {
+export default {
   env: {
-    commonjs: true,
-    es2021: true,
+    es6: true,
     node: true,
   },
-  extends: ['standard', 'prettier'],
+  extends: ["standard", "prettier"],
   parserOptions: {
     ecmaVersion: 12,
   },
   rules: {},
-}
+};
