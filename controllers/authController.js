@@ -38,7 +38,7 @@ const login = async (req, res) => {
     id: user._id,
   };
   const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "48h" });
-  console.log(token);
+  await User.findByIdAndUpdate(user._id, { token });
 
   res.json({
     token: token,
@@ -49,7 +49,23 @@ const login = async (req, res) => {
   });
 };
 
+const getCurrent = async (req, res) => {
+  const { email, subscription } = req.user;
+  res.json({
+    email,
+    subscription,
+  });
+};
+
+const logout = async (req, res) => {
+  const { _id } = req.user;
+  await User.findByIdAndUpdate(_id, { token: "" });
+  res.status(204);
+};
+
 export default {
   register: controllerWrapper(register),
   login: controllerWrapper(login),
+  getCurrent: controllerWrapper(getCurrent),
+  logout: controllerWrapper(logout),
 };

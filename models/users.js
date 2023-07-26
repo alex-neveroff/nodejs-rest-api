@@ -25,6 +25,9 @@ const userSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
+userSchema.pre("findOneAndUpdate", validateAtUpdate);
+
+userSchema.post("findOneAndUpdate", handleMongooseError);
 userSchema.post("save", handleMongooseError);
 
 export const registerSchema = Joi.object({

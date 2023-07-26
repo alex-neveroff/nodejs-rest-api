@@ -1,6 +1,6 @@
 import express from "express";
 import { validateBody } from "../../decorators/index.js";
-import { isEmptyBody, isValidId } from "../../helpers/index.js";
+import { isEmptyBody, authenticate } from "../../helpers/index.js";
 import { loginSchema, registerSchema } from "../../models/users.js";
 import { authController } from "../../controllers/index.js";
 const router = express.Router();
@@ -18,5 +18,9 @@ router.post(
   validateBody(loginSchema),
   authController.login
 );
+
+router.get("/current", authenticate, authController.getCurrent);
+
+router.post("/logout", authenticate, authController.logout);
 
 export default router;
