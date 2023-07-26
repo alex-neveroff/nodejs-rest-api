@@ -29,26 +29,26 @@ userSchema.post("save", handleMongooseError);
 
 export const registerSchema = Joi.object({
   email: Joi.string().email().required().messages({
-    "any.required": "missing required email field",
-    "string.base": "field email must be a string",
-    "string.email": "field email not valid",
+    "any.required": "Missing required email field",
+    "string.base": "Field email must be a string",
+    "string.email": "Field email not valid",
   }),
   password: Joi.string().required().messages({
-    "any.required": "missing required password field",
-    "string.base": "field password must be a string",
+    "any.required": "Missing required password field",
+    "string.base": "Field password must be a string",
   }),
   subscription: Joi.string().valid(...subscriptionList),
 });
 
 export const loginSchema = Joi.object({
   email: Joi.string().email().required().messages({
-    "any.required": "missing required email field",
-    "string.base": "field email must be a string",
-    "string.email": "field email not valid",
+    "any.required": "Missing required email field",
+    "string.base": "Field email must be a string",
+    "string.email": "Field email not valid",
   }),
   password: Joi.string().required().messages({
-    "any.required": "missing required password field",
-    "string.base": "field password must be a string",
+    "any.required": "Missing required password field",
+    "string.base": "Field password must be a string",
   }),
 });
 
