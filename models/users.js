@@ -55,4 +55,13 @@ export const loginSchema = Joi.object({
   }),
 });
 
+export const subscriptionSchema = Joi.object({
+  subscription: Joi.string()
+    .valid(...subscriptionList)
+    .required()
+    .messages({
+      "any.only": "Field subscription must be one of {{#valids}}",
+    }),
+});
+
 export const User = model("user", userSchema);
