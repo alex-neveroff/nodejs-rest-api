@@ -11,8 +11,6 @@ const getAll = async (req, res) => {
     "-createdAt -updatedAt",
     { skip, limit }
   ).populate("owner", "email subscription");
-  // const total = await Contact.where({ owner, ...query }).countDocuments();
-  // console.log(total);
   res.json(result);
 };
 
