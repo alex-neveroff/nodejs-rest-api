@@ -12,7 +12,6 @@ const getAll = async (req, res) => {
     { skip, limit }
   ).populate("owner", "email subscription");
   const total = await Contact.where({ owner, ...query }).countDocuments();
-  // res.json(result);
   res.json({
     contacts: result,
     "current page": page,
