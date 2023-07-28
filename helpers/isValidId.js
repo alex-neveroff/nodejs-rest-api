@@ -6,8 +6,6 @@ const isValidId = (req, res, next) => {
 
   if (!isValidObjectId(contactId)) {
     next(HttpError(404, "Not found"));
-    // Як альтернатива:
-    // next(HttpError(400, `${contactId} isn't valid id`));
   }
   next();
 };

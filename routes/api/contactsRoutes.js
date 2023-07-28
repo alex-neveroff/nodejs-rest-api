@@ -1,21 +1,23 @@
 import express from "express";
 import { contactsController } from "../../controllers/index.js";
-import { isEmptyBody, isValidId } from "../../helpers/index.js";
+import { isEmptyBody, isValidId, authenticate } from "../../helpers/index.js";
 import { validateBody } from "../../decorators/index.js";
 import { contactAddSchema, contactPatchSchema } from "../../models/contact.js";
 
 const router = express.Router();
 
-router.get("/", contactsController.getAll);
+router.get("/", authenticate, contactsController.getAll);
 router.get("/:contactId", isValidId, contactsController.getById);
 router.post(
   "/",
+  authenticate,
   isEmptyBody,
   validateBody(contactAddSchema),
   contactsController.add
 );
 router.put(
   "/:contactId",
+  authenticate,
   isEmptyBody,
   isValidId,
   validateBody(contactAddSchema),
@@ -23,11 +25,17 @@ router.put(
 );
 router.patch(
   "/:contactId/favorite",
+  authenticate,
   isEmptyBody,
   isValidId,
   validateBody(contactPatchSchema),
   contactsController.updateStatusContact
 );
-router.delete("/:contactId", isValidId, contactsController.deleteById);
+router.delete(
+  "/:contactId",
+  authenticate,
+  isValidId,
+  contactsController.deleteById
+);
 
 export default router;
