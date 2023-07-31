@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import Joi from "joi";
-import { handleMongooseError, validateAtUpdate } from "../helpers/index.js";
+import { handleMongooseError, validateAtUpdate } from "../middlewars/index.js";
 
 const subscriptionList = ["starter", "pro", "business"];
 
@@ -21,6 +21,7 @@ const userSchema = new Schema(
       default: "starter",
     },
     token: String,
+    avatarURL: String,
   },
   { versionKey: false, timestamps: true }
 );

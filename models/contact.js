@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import Joi from "joi";
-import { handleMongooseError, validateAtUpdate } from "../helpers/index.js";
+import { handleMongooseError, validateAtUpdate } from "../middlewars/index.js";
 
 const contactSchema = new Schema(
   {
