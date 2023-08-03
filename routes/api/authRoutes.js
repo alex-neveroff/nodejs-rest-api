@@ -1,6 +1,6 @@
 import express from "express";
 import { validateBody } from "../../decorators/index.js";
-import { isEmptyBody, authenticate } from "../../helpers/index.js";
+import { isEmptyBody, authenticate, upload } from "../../middlewars/index.js";
 import {
   loginSchema,
   registerSchema,
@@ -32,6 +32,13 @@ router.patch(
   authenticate,
   validateBody(subscriptionSchema),
   authController.updateUserSubscription
+);
+
+router.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  authController.updateAvatar
 );
 
 export default router;
