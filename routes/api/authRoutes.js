@@ -5,6 +5,7 @@ import {
   loginSchema,
   registerSchema,
   subscriptionSchema,
+  verificationSchema,
 } from "../../models/users.js";
 import { authController } from "../../controllers/index.js";
 const router = express.Router();
@@ -39,6 +40,13 @@ router.patch(
   authenticate,
   upload.single("avatar"),
   authController.updateAvatar
+);
+
+router.get("/verify/:verificationToken", authController.verifyEmail);
+router.post(
+  "/verify",
+  validateBody(verificationSchema),
+  authController.resendVerifyEmail
 );
 
 export default router;
